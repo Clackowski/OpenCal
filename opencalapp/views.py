@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login
-from django.contrib.auth.forms import AuthenticationForm
-from .forms import RegisterForm
+from .forms import RegisterForm, LoginForm
 from django.urls import reverse
 
 # Create your views here.
@@ -12,7 +11,7 @@ from django.urls import reverse
 #URL Configuration
 def login_user(request):
     if request.method == 'POST':
-        form = AuthenticationForm(data=request.POST)
+        form = LoginForm(data=request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
             if form.get_user().username == 'christopherlackowski':
@@ -22,7 +21,7 @@ def login_user(request):
         else:
             return render(request, 'login.html', {'form': form})
     else:
-        form = AuthenticationForm()
+        form = LoginForm()
         
     return render(request, 'login.html', {'form': form})
 

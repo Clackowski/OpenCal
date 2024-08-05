@@ -101,7 +101,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-#AUTH_USER_MODEL = 'opencalapp.CustomUser'
+# Allows embedding iFrames ( for footer )
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 
 # Internationalization
