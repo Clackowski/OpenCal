@@ -6,8 +6,6 @@ from django.urls import reverse
 # Create your views here.
 # Request handlers (takes a request and gives a response)
 
-#options are: pull from database, transform data, send email, etc.
-
 #URL Configuration
 def login_user(request):
     if request.method == 'POST':
