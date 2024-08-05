@@ -1,0 +1,209 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Calendars Page</title>
+        <link rel="stylesheet" href="{% static 'css/mycalendarsstyle.css' %}">
+        <link rel="stylesheet" href="{% static 'css/globalstyle.css' %}">
+        <script src="https://kit.fontawesome.com/f74ab1a7e1.js" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <div class="page-container">
+            <div class="nav-pane">
+                <p style="font-family:Verdana, sans-serif; font-size: 30px; color:rgb(64, 67, 73)">OpenCal</p>
+                <br><br>
+                
+                <div class="nav-options">
+                    <button class="nav-button" style="font-size: 20px">&ensp;<i class="fas fa-house"></i>&ensp;My Account</button>
+                    <br><br><br>
+                    <button class="nav-button" style="font-size: 20px">&ensp;<i class="fas fa-user-group"></i>&ensp;Friends</button>
+                    <br><br><br>
+                    <button class="nav-button-selected" style="font-size: 20px">&ensp;<i class="fas fa-calendar"></i>&ensp;Calendars</button>
+                    <br><br><br>
+                    <button class="nav-button" style="font-size: 20px">&ensp;<i class="fas fa-gear"></i>&ensp;Settings</button>
+                </div>
+                <button class="profile-container">
+                    <img src="{% static 'images/IMG_7987.png' %}" alt="Profile Image" class="profile-img">
+                    <s-text style="text-transform: capitalize;">Chris Lackowski</s-text>
+                </button>
+            </div>
+
+            <div class="page-pane">
+                <div class="page-pane-bubble">
+                    <div class="header-title">
+                        <b-text style="font-size: 40px;">My Calendars</b-text>
+                    </div>
+    
+                    <div class="calendars-section">
+                        <div class="grid">
+                            <div class="grid-bubble">
+                                <button class="grid-cell">
+                                    <div class="cell-bubble">
+                                        <div class="cal-name-container" style="justify-content: center;">
+                                            <s-text>Create new calendar</s-text>
+                                        </div>
+                                        <div class="plus-icon">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </div>
+                                    </div>
+                                </button>
+                                <button class="grid-cell">
+                                    <div class="cal-name-container">
+                                        <div class="left-cal-name">
+                                            <s-text>Close Family</s-text>
+                                        </div>
+                                        <div>
+                                            <i class="fas fa-calendar"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cal-prev">
+                                        
+                                    </div>
+                                </button>
+                                <button class="grid-cell">
+                                    <div class="cal-name-container">
+                                        <div class="left-cal-name">
+                                            <s-text>Study Buddies</s-text>
+                                        </div>
+                                        <div>
+                                            <i class="fas fa-calendar"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cal-prev">
+                                        
+                                    </div>
+                                </button>
+                                <button class="grid-cell">
+                                    <div class="cal-name-container">
+                                        <div class="left-cal-name">
+                                            <s-text>College Friends</s-text>
+                                        </div>
+                                        <div>
+                                            <i class="fas fa-calendar"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cal-prev">
+                                        
+                                    </div>
+                                </button>
+                                <button class="grid-cell">
+                                    <div class="cal-name-container">
+                                        <div class="left-cal-name">
+                                            <s-text>College Friends</s-text>
+                                        </div>
+                                        <div>
+                                            <i class="fas fa-calendar"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cal-prev">
+                                        
+                                    </div>
+                                </button>
+                                <button class="grid-cell">
+                                    <div class="cal-name-container">
+                                        <div class="left-cal-name">
+                                            <s-text>College Friends</s-text>
+                                        </div>
+                                        <div>
+                                            <i class="fas fa-calendar"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cal-prev">
+                                        
+                                    </div>
+                                </button>
+                                <button class="grid-cell">
+                                    <div class="cal-name-container">
+                                        <div class="left-cal-name">
+                                            <s-text>College Friends</s-text>
+                                        </div>
+                                        <div>
+                                            <i class="fas fa-calendar"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cal-prev">
+                                        
+                                    </div>
+                                </button>
+                                <button class="grid-cell" style="visibility: hidden;">
+                                    <div class="cal-name-container">
+                                        <div class="left-cal-name">
+                                            <s-text>College Friends</s-text>
+                                        </div>
+                                        <div>
+                                            <i class="fas fa-calendar"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cal-prev">
+                                        
+                                    </div>
+                                </button>
+                                <button class="grid-cell" style="visibility: hidden;">
+                                    <div class="cal-name-container">
+                                        <div class="left-cal-name">
+                                            <s-text>College Friends</s-text>
+                                        </div>
+                                        <div>
+                                            <i class="fas fa-calendar"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cal-prev">
+                                        
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="calendar-info">
+                            <div class="calendar-info-bubble">
+                                <div class="info-header">
+                                    <s-text style="font-size: 20px;">
+                                        <i class="fas fa-calendar"></i>
+                                        &ensp;Close Family
+                                    </s-text>
+                                    <button class="cal-info-close">
+                                        <i class="fa-solid fa-xmark" style="font-size: 20px;"></i>
+                                    </button>
+                                </div>
+                                <div class="info-body">
+                                    <div class="info-prev">
+
+                                    </div>
+                                    <button class="manage-button" style="margin-top: 5px; margin-bottom: 10px;">
+                                        <s-text>
+                                            Manage access
+                                        </s-text>
+                                    </button>
+                                    <div class="info-details">
+                                        <div style="font-size: 14px;">
+                                            <s-text>
+                                                <b>Last Modified: </b>10/30/2024
+                                            </s-text>
+                                            <br>
+                                            <s-text>
+                                                <b>Contributors: </b>Alex Simpson, Jen Cook, Jim Buck
+                                            </s-text>
+                                        </div>
+                                        <div class="info-footer">
+                                            <button class="open-button" style="margin-bottom: 10px;">
+                                                <s-text>
+                                                    Open
+                                                </s-text>
+                                            </button>
+                                            <button class="delete-button" style="margin-bottom: 10px;">
+                                                <s-text>
+                                                    Delete
+                                                </s-text>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <iframe src="{% url 'footer' %}" height="30" width="336" title="Footer Frame" style="border: none; margin-bottom: 25px;"></iframe>
+            </div>
+        </div>
+    </body>
+</html>

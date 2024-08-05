@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="{% static 'css/globalstyle.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/homestyle.css' %}" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="column">
+        <div class="logo">
+          <p
+            style="color: rgb(234, 231, 156); font-family: Verdana, sans-serif"
+          >
+            OpenCal
+          </p>
+        </div>
+      </div>
+
+      <div class="vl"></div>
+
+      <div class="column">
+        <div class="action-area">
+          <div class="action-titles">
+            <h1
+              style="
+                font-family: Verdana, sans-serif;
+                font-size: 30px;
+                color: rgb(64, 67, 73);
+              "
+            >
+              OpenCal
+            </h1>
+            <br />
+            <s-text style="font-size: 18px">
+              Join For Simple Scheduling.
+            </s-text>
+          </div>
+
+          <div class="input-area">
+            <!--
+            <input type="text" placeholder="username" />
+            <input type="password" placeholder="password" />
+            <button type="submit">Login</button>-->
+            <form action="{% url 'login' %}" method="POST">
+              {% csrf_token %}
+              {{ form }}
+              <input type="Submit" value="Login">
+            </form>
+
+            <br />
+
+            <s-text>
+              <a href="/login.html">Forgot password?</a>
+            </s-text>
+
+            <br /><br />
+            <div class="or-break">
+              <hr />
+              <s-text>or</s-text>
+              <hr />
+            </div>
+            <br /><br />
+            <s-text>
+              Don't have an account? <a href="/login.html">Sign up</a>
+            </s-text>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: center">
+      <iframe
+        src="{% url 'footer' %}"
+        height="30"
+        width="336"
+        title="Footer Frame"
+        style="border: none"
+      ></iframe>
+    </div>
+  </body>
+</html>

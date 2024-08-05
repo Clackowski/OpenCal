@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register Page</title>
+    <link rel="stylesheet" href="{% static 'css/globalstyle.css' %}">
+    <link rel="stylesheet" href="{% static 'css/registerstyle.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="column">
+            <div class="logo">
+                <p style="color:rgb(234, 231, 156); font-family:Verdana, sans-serif">OpenCal</p>
+            </div>
+        </div>
+
+        <div class="vl"></div>
+        
+        <div class="column">
+            <div class="action-area">
+                <div class="action-titles">
+                    <h1 style="font-family:Verdana, sans-serif; font-size: 30px; color:rgb(64, 67, 73)">
+                        OpenCal
+                    </h1>
+                    
+                    <s-text style="font-size: 18px;">
+                        Create Account to Start Scheduling
+                    </s-text>
+                </div>
+        
+                <div class="input-area">
+                    <!--<div class="info-inputs">
+                        <input type="text" placeholder="username" style="width: 97%;">
+                        <div class="name-inputs">
+                            <input type="text" placeholder="first name" style="width: 45%">
+                            <input type="text" placeholder="last name" style="width: 45%">
+                        </div>
+                        <input type="email" placeholder="email" style="width: 97%;">
+                        <input type="password" placeholder="password" style="width: 97%;">
+                        <input type="password" placeholder="repeat password" style="width: 97%;">
+                    </div>-->
+                    <form action="{% url 'register' %}" method="POST" style="display: flex; flex-direction: column; align-items: center; width: 200px;">
+                        {% csrf_token %}
+                        {{form.username}}
+                        {{form.email}}
+                        {{form.first_name}}
+                        {{form.last_name}}
+                        {{form.password1}}
+                        {{form.password2}}
+
+                        <input type="Submit" value="Create Account" style="margin-top: 14px;
+                        width: 120px;
+                        height: 25px;
+                        border-radius: 10px;
+                        border: none;
+                        background-color: rgb(164, 140, 88);">
+                    </form>
+
+                    {% if form.errors %}
+                    <div class="errors">
+                        <ul>
+                            {% for field in form %}
+                                {% if field.errors %}
+                                    <li>{{ field.label }}: {{ field.errors|striptags }}</li>
+                                {% endif %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+
+                    
+                    <br>
+                    <div class="or-break">
+                        <hr>
+                        <s-text>or</s-text>
+                        <hr>
+                    </div>
+                    <br>
+                    <s-text>
+                        Already have an account? <a href="/home.html">Sign in</a>
+                    </s-text>
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="display: flex; justify-content: center;">
+        <iframe src="{% url 'footer' %}" height="30" width="336" title="Footer Frame" style="border: none;"></iframe>
+    </div>
+
+    <!--<script src="nav.js"></script>-->
+</body>
+
+</html>

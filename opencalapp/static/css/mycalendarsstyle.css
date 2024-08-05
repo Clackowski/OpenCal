@@ -1,0 +1,351 @@
+body {
+    background-color: rgb(102, 160, 199);
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+.page-container {
+    height:100%;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-pane {
+    height:100%;
+    width:13%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(240,240,240);
+    /*background-image: linear-gradient(to bottom right, rgb(234, 231, 156), rgb(102, 160, 199));*/
+    flex-direction: column;
+    padding-left: 30px;
+    border-right: 1px solid rgb(164, 140, 88);
+}
+
+.nav-options {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.page-pane {
+    height:100%;
+    width:87%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(251, 251, 251);
+    background-image: linear-gradient(to bottom right, rgb(234, 231, 156), rgb(102, 160, 199));
+    flex-direction: column;
+}
+
+.nav-button {
+    border: none;
+    color: rgb(64, 67, 73);
+    font-family: Georgia, serif;
+    width: 200px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.nav-button-selected {
+    border: none;
+    background-color: rgb(102, 160, 199);
+    color: rgb(64, 67, 73);
+    font-family: Georgia, serif;
+    width: 200px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.profile-container {
+    margin-top: 400px;
+    margin-left: -15px;
+    height: 90px;
+    width: 100%;
+    border-radius: 100px;
+    padding: 0;
+    background-color: rgb(251, 251, 251);
+    border: 1px solid rgb(164, 140, 88);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.profile-img {
+    height: 85%;
+    aspect-ratio: 1.0;
+    border-radius: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+
+/**/
+.page-pane-bubble {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 92%;
+    height: 90%;
+    flex-direction: column;
+    background-color: rgb(240,240,240);
+    border-radius: 50px;
+    margin-top: 30px;
+}
+
+.header-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    width: 100%;
+
+}
+
+.calendars-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 70%;
+}
+
+.grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 100%;
+}
+
+.calendar-info {
+    display: flex;
+    background-color: rgb(251, 251, 251);
+    width: 30%;
+    height: 70%;
+    border-radius: 20px;
+    display: flex; /*Eventually make visibile when you click on a calendar*/
+    justify-content: center;
+    align-items: center;
+}
+
+.grid-bubble {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(251, 251, 251);
+    height: 95%;
+    width: 95%;
+    border-radius: 20px;
+    overflow-y: scroll;
+}
+
+.grid-cell {
+    height:175px;
+    width: 27%;
+    background-color:rgb(234, 231, 156);
+    margin: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 20px;
+}
+
+/**/
+.cal-prev {
+    height: 60%;
+    width: 80%;
+    background-color: rgb(240, 240, 240);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.cal-name-container {
+    font-size: 13px;
+    width: 80%;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-cal-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cell-bubble {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(251,251,251);
+    border-radius: 20px;
+    flex-direction: column;
+}
+
+.plus-icon {
+    height: 60%;
+    width: 80%;
+    background-color: rgb(240,240,240);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 50px;
+}
+
+
+/*Calendar Info*/
+.calendar-info-bubble {
+    display: flex;
+    background-color: rgb(240,240,240);
+    height: 90%;
+    width: 90%;
+    border-radius: 20px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-header {
+    display: flex;
+    height: 10%;
+    width: 90%;
+    margin-top: 3%;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.info-body {
+    display: flex;
+    height: 80%;
+    width: 90%;
+    margin-bottom: 5%;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(251, 251, 251);
+    border-radius: 20px;
+}
+
+.cal-info-close {
+    display: flex;
+    border: none; 
+    width: 35px; 
+    height: 35px; 
+    border-radius: 200px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center
+}
+
+.info-prev {
+    display: flex;
+    height: 50%;
+    width: 75%;
+    background-color: rgb(240, 240, 240);
+    margin-top: 20px;
+}
+
+.info-details {
+    display: flex;
+    height: 40%;
+    width: 95%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.info-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.manage-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 20px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 16px;
+    background-color: rgb(234, 231, 156);
+}
+
+.open-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 20px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 16px;
+    background-color: rgb(149, 255, 159);
+}
+
+.delete-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 20px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 16px;
+    background-color: rgb(250, 157, 157);
+}
+
+/*Button Hovering*/
+.manage-button:hover {
+    background-color: rgb(212, 210, 141);
+}
+
+.open-button:hover {
+    background-color: rgb(133, 223, 142);
+}
+
+.delete-button:hover {
+    background-color: rgb(218, 137, 137);
+}
+
+.grid-cell:hover {
+    background-color: rgb(212, 210, 141);
+}
+
+.profile-container:hover {
+    background-color: rgb(218, 218, 218);
+}
+
+.nav-button:hover {
+    background-color: rgb(218, 218, 218);
+}
+
+.nav-button-selected:hover {
+    background-color:rgb(87, 133, 164)
+}
+
+.cal-info-close:hover {
+    background-color: rgb(218, 218, 218);
+}
