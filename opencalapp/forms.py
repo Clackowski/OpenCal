@@ -1,13 +1,25 @@
 # forms.py
 from django import forms
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.forms import EmailInput, TextInput, PasswordInput
+from django.contrib.auth.models import User
+
+# forms.py
+from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import EmailInput, TextInput, PasswordInput
 from django.contrib.auth.models import User
 
+
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'username', 'style' : "width: 100%"}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'password', 'style' : "width: 100%"}))
+
+
 class RegisterForm(UserCreationForm):
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': "email", 'style' : "width: 100%"}))
-    first_name = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'placeholder': 'first name', 'placeholder': "first name", 'style' : "width: 100%"}))
-    last_name = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'placeholder': 'last name', 'placeholder': "last name", 'style' : "width: 100%"}))
+    first_name = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'placeholder': "first name", 'style' : "width: 100%"}))
+    last_name = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'placeholder': "last name", 'style' : "width: 100%"}))
 
     class Meta:
         model = User
