@@ -1,0 +1,37 @@
+html {
+    height: 100%;
+}
+
+s-text {
+    color: rgb(64, 67, 73);
+    font-family: Georgia, serif;
+}
+
+b-text {
+    color: rgb(64, 67, 73);
+    font-family: Verdana, sans-serif;
+}
+
+.vl {
+    border-left: 2px solid rgb(164, 140, 88);
+    height: 700px;
+}
+
+button {
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.footer-button {
+    border: none;
+    background-color: rgba(0,0,0,0);
+    color:rgb(240,240,240); 
+    font-family:Verdana, sans-serif; 
+    font-size: 15px;
+}
+
+
+/*Button Hovering*/
+.footer-button:hover {
+    color: rgb(82, 82, 82);
+}
