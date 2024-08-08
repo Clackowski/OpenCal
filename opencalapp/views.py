@@ -40,3 +40,15 @@ def show_footer(request):
 
 def show_mycalendars(request):
     return render(request, 'mycalendars.html')
+
+def about(request):
+    return render(request, 'about.html')
+
+def contact_us(request):
+    return render(request, 'contactus.html')
+
+def help_center(request):
+    return render(request, 'helpcenter.html')
+
+def forgot_password(request):
+    return render(request, 'forgotpassword.html')
