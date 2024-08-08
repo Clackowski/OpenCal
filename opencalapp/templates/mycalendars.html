@@ -15,18 +15,49 @@
                 <br><br>
                 
                 <div class="nav-options">
-                    <button class="nav-button" style="font-size: 20px">&ensp;<i class="fas fa-house"></i>&ensp;My Account</button>
+                    <a class="nav-button" style="font-size: 20px" href="{% url 'account' %}">
+                        &ensp;
+                        <i class="fas fa-house"></i>
+                        &ensp;
+                        My Account
+                    </a>
                     <br><br><br>
-                    <button class="nav-button" style="font-size: 20px">&ensp;<i class="fas fa-user-group"></i>&ensp;Friends</button>
+                    <a class="nav-button" style="font-size: 20px" href="{% url 'friends' %}">
+                        &ensp;
+                        <i class="fas fa-user-group"></i>
+                        &ensp;
+                        Friends
+                    </a>
                     <br><br><br>
-                    <button class="nav-button-selected" style="font-size: 20px">&ensp;<i class="fas fa-calendar"></i>&ensp;Calendars</button>
+                    <a class="nav-button-selected" style="font-size: 20px" href="{% url 'mycalendars' %}">
+                        &ensp;
+                        <i class="fas fa-calendar"></i>
+                        &ensp;
+                        Calendars
+                    </a>
                     <br><br><br>
-                    <button class="nav-button" style="font-size: 20px">&ensp;<i class="fas fa-gear"></i>&ensp;Settings</button>
+                    <a class="nav-button" style="font-size: 20px" href="{% url 'settings' %}">
+                        &ensp;
+                        <i class="fas fa-gear"></i>
+                        &ensp;
+                        Settings
+                    </a>
                 </div>
                 <div class="all-profile">
                     <div class="profile-pop-up" id="profilePopUp">
-                        <button class="profile-button">Other</button>
-                        <button class="profile-button">Log Out</button>
+                        <a class="profile-button" style="text-align: left;"  href="{% url 'profile' %}">
+                            <b-text style="font-size: 15px;">
+                                &nbsp;
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                Profile
+                            </b-text>
+                        </a>
+                        <button class="profile-button" style="text-align: left;">
+                            <b-text style="font-size: 15px;">
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                Log Out
+                            </b-text>
+                        </button>
                     </div>
                     <br>
                     <button class="profile-container" onclick="toggleVisibility()">

@@ -52,3 +52,15 @@ def help_center(request):
 
 def forgot_password(request):
     return render(request, 'forgotpassword.html')
+
+def account(request):
+    return render(request, 'accountdashboard.html')
+
+def friends(request):
+    return render(request, 'friends.html')
+
+def settings(request):
+    return render(request, 'settings.html')
+
+def profile(request):
+    return render(request, 'profile.html')
