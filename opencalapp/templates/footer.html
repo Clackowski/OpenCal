@@ -9,21 +9,15 @@
     <body>
         <div>
             <nav style="margin-bottom: 30px;">
-                <button class="footer-button">
-                    About
-                </button>
+                <a href="{% url 'about' %}" class="footer-button">About</a>
                 <s-text style="color:rgb(240,240,240); font-family:Verdana, sans-serif; font-size: 15px;">
                     &nbsp;|&nbsp;
                 </s-text>
-                <button class="footer-button">
-                    Contact Us
-                </button>
+                <a href="{% url 'contact_us' %}" class="footer-button">Contact Us</a>
                 <s-text style="color:rgb(240,240,240); font-family:Verdana, sans-serif; font-size: 15px;">
                     &nbsp;|&nbsp;
                 </s-text>
-                <button class="footer-button">
-                    Help Center
-                </button>
+                <a href="{% url 'help_center' %}" class="footer-button">Help Center</a>
             </nav>
         </div>
     </body>

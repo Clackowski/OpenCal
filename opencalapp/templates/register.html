@@ -81,7 +81,7 @@
                     </div>
                     <br>
                     <s-text>
-                        Already have an account? <a href="{% url 'login' %}">Sign in</a>
+                        Already have an account? <a href="{% url 'login' %}" style="color: blue;">Sign in</a>
                     </s-text>
                     <br>
                     <br>
@@ -91,7 +91,7 @@
     </div>
 
     <div style="display: flex; justify-content: center;">
-        <iframe src="{% url 'footer' %}" height="30" width="336" title="Footer Frame" style="border: none;"></iframe>
+        {% include 'footer.html' %}
     </div>
 
     <!--<script src="nav.js"></script>-->

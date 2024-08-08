@@ -74,7 +74,7 @@
             <br />
 
             <s-text>
-              <a href="/login.html">Forgot password?</a>
+              <a href="{% url 'forgot_password' %}" style="color: blue;">Forgot password?</a>
             </s-text>
 
             <br /><br />
@@ -85,7 +85,7 @@
             </div>
             <br /><br />
             <s-text>
-              Don't have an account? <a href="{% url 'register' %}">Sign up</a>
+              Don't have an account? <a href="{% url 'register' %}" style="color: blue;">Sign up</a>
             </s-text>
             <br> <br>
           </div>
@@ -94,13 +94,7 @@
     </div>
 
     <div style="display: flex; justify-content: center">
-      <iframe
-        src="{% url 'footer' %}"
-        height="30"
-        width="336"
-        title="Footer Frame"
-        style="border: none"
-      ></iframe>
+      {% include 'footer.html' %}
     </div>
   </body>
 </html>
