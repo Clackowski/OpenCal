@@ -67,9 +67,31 @@ body {
     border-radius: 20px;
 }
 
+.all-profile {
+    display: flex;
+    align-items: center;
+    width: 85%;
+    height: 250px;
+    flex-direction: column;
+    margin-top: 220px;
+}
+
+.profile-pop-up {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(255,255,255);
+    width: 90%;
+    height: 50%;
+    box-shadow: 0 0 10px 5px rgb(218, 218, 218);
+    border-radius: 15px;
+    opacity: 0; /* Initially hidden */
+    visibility: hidden; /* Keeps space in layout */
+    transition: opacity 0.5s, visibility 0.5s; /* Smooth transition */
+}
+
 .profile-container {
-    margin-top: 400px;
-    margin-left: -15px;
     height: 90px;
     width: 100%;
     border-radius: 100px;
@@ -88,6 +110,14 @@ body {
     margin-left: 10px;
     margin-right: 10px;
     object-fit: cover;
+}
+
+.profile-button {
+    width: 90%;
+    height: 40%;
+    background-color: white;
+    border: none;
+    border-radius: 15px;
 }
 
 
@@ -348,4 +378,14 @@ body {
 
 .cal-info-close:hover {
     background-color: rgb(218, 218, 218);
+}
+
+.profile-button:hover {
+    background-color: rgb(240, 240, 240);
+}
+
+
+.profile-pop-up.show {
+    opacity: 1; /* Fully visible */
+    visibility: visible; /* Make element visible */
 }

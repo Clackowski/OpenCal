@@ -23,10 +23,17 @@
                     <br><br><br>
                     <button class="nav-button" style="font-size: 20px">&ensp;<i class="fas fa-gear"></i>&ensp;Settings</button>
                 </div>
-                <button class="profile-container">
-                    <img src="{% static 'images/IMG_7987.png' %}" alt="Profile Image" class="profile-img">
-                    <s-text style="text-transform: capitalize;">Chris Lackowski</s-text>
-                </button>
+                <div class="all-profile">
+                    <div class="profile-pop-up" id="profilePopUp">
+                        <button class="profile-button">Other</button>
+                        <button class="profile-button">Log Out</button>
+                    </div>
+                    <br>
+                    <button class="profile-container" onclick="toggleVisibility()">
+                        <img src="{% static 'images/IMG_7987.png' %}" alt="Profile Image" class="profile-img">
+                        <s-text style="text-transform: capitalize;">Chris Lackowski</s-text>
+                    </button>
+                </div>
             </div>
 
             <div class="page-pane">
@@ -202,8 +209,15 @@
                         </div>
                     </div>
                 </div>
-                <iframe src="{% url 'footer' %}" height="30" width="336" title="Footer Frame" style="border: none; margin-bottom: 25px;"></iframe>
+                {% include 'footer.html' %}
             </div>
         </div>
+
+        <script>
+            function toggleVisibility() {
+                var profilePopUp = document.getElementById('profilePopUp');
+                profilePopUp.classList.toggle('show');
+            }
+        </script>
     </body>
 </html>
