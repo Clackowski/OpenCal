@@ -10,10 +10,19 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.username
     
-    
-    
 class Calendar(models.Model):
-    daysBusy = models.IntegerField(default= 26)
+    name = models.CharField(max_length=20, default='Calendar Name')
+    owner = models.ForeignKey(CustomUser, related_name='owned_calendars', on_delete=models.CASCADE, default=1)
     
     def __str__(self):
-        return f"Calendar with {self.daysBusy} days busy"
+        return self.name
+    
+class Event(models.Model):
+    calendar = models.ForeignKey(Calendar, related_name='events', on_delete=models.CASCADE)
+    title = models.CharField(max_length=50)
+    description = models.CharField(max_length=100)
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
+    
+    def __str__(self):
+        return self.title

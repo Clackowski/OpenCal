@@ -12,7 +12,7 @@
         <div class="calendars-section">
             <div class="grid">
                 <div class="grid-bubble">
-                    <button class="grid-cell">
+                    <button class="grid-cell" onclick="createNewCal()">
                         <div class="cell-bubble">
                             <div class="cal-name-container" style="justify-content: center;">
                                 <s-text>Create new calendar</s-text>
@@ -22,10 +22,11 @@
                             </div>
                         </div>
                     </button>
+                    {% for calendar in user.calendars.all %}
                     <button class="grid-cell">
                         <div class="cal-name-container">
                             <div class="left-cal-name">
-                                <s-text>Close Family</s-text>
+                                <s-text>{{calendar.name}}</s-text>
                             </div>
                             <div>
                                 <i class="fas fa-calendar"></i>
@@ -35,97 +36,7 @@
                             
                         </div>
                     </button>
-                    <button class="grid-cell">
-                        <div class="cal-name-container">
-                            <div class="left-cal-name">
-                                <s-text>Study Buddies</s-text>
-                            </div>
-                            <div>
-                                <i class="fas fa-calendar"></i>
-                            </div>
-                        </div>
-                        <div class="cal-prev">
-                            
-                        </div>
-                    </button>
-                    <button class="grid-cell">
-                        <div class="cal-name-container">
-                            <div class="left-cal-name">
-                                <s-text>College Friends</s-text>
-                            </div>
-                            <div>
-                                <i class="fas fa-calendar"></i>
-                            </div>
-                        </div>
-                        <div class="cal-prev">
-                            
-                        </div>
-                    </button>
-                    <button class="grid-cell">
-                        <div class="cal-name-container">
-                            <div class="left-cal-name">
-                                <s-text>College Friends</s-text>
-                            </div>
-                            <div>
-                                <i class="fas fa-calendar"></i>
-                            </div>
-                        </div>
-                        <div class="cal-prev">
-                            
-                        </div>
-                    </button>
-                    <button class="grid-cell">
-                        <div class="cal-name-container">
-                            <div class="left-cal-name">
-                                <s-text>College Friends</s-text>
-                            </div>
-                            <div>
-                                <i class="fas fa-calendar"></i>
-                            </div>
-                        </div>
-                        <div class="cal-prev">
-                            
-                        </div>
-                    </button>
-                    <button class="grid-cell">
-                        <div class="cal-name-container">
-                            <div class="left-cal-name">
-                                <s-text>College Friends</s-text>
-                            </div>
-                            <div>
-                                <i class="fas fa-calendar"></i>
-                            </div>
-                        </div>
-                        <div class="cal-prev">
-                            
-                        </div>
-                    </button>
-                    <button class="grid-cell" style="visibility: hidden;">
-                        <div class="cal-name-container">
-                            <div class="left-cal-name">
-                                <s-text>College Friends</s-text>
-                            </div>
-                            <div>
-                                <i class="fas fa-calendar"></i>
-                            </div>
-                        </div>
-                        <div class="cal-prev">
-                            
-                        </div>
-                    </button>
-                    <button class="grid-cell" style="visibility: hidden;">
-                        <div class="cal-name-container">
-                            <div class="left-cal-name">
-                                <s-text>College Friends</s-text>
-                            </div>
-                            <div>
-                                <i class="fas fa-calendar"></i>
-                            </div>
-                        </div>
-                        <div class="cal-prev">
-                            
-                        </div>
-                    </button>
+                    {% endfor %}
                 </div>
             </div>
             <div class="calendar-info" id="calendar-info">
@@ -176,12 +87,53 @@
             </div>
         </div>
     </div>
+    
+    <div class="popup-overlay" id="new-cal-popup">
+        <div class="popup-bubble">
+            <div>
+                <button class="cal-info-close" onclick="closeNewCal()">
+                    <i class="fa-solid fa-xmark" style="font-size: 20px;"></i>
+                </button>
+                <form action="{% url 'mycalendars' %}" method="POST">
+                    {% csrf_token %}
+                    {{ form.name }}
+                    <input type="submit" value="Create" >
+                </form>
+                {% if form.errors %}
+              <div class="errors">
+                <ul>
+                  {% for field in form %}
+                    {% if field.errors %}
+                      <li>{{ field.label }}: {{ field.errors|striptags }}</li>
+                    {% endif %}
+                  {% endfor %}
+                  {% for error in form.non_field_errors %}
+                      <li>{{ error }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% endif %}
+            </div>
+            
+        </div>
+    </div>
+
     {% include 'footer.html' %}
 
     <script>
         function closeInfo() {
             var calInfo = document.getElementById('calendar-info');
             calInfo.style.display = 'none';
+        }
+
+        function createNewCal() {
+            var formPopUp = document.getElementById('new-cal-popup');
+            formPopUp.style.display = 'flex';
+        }
+
+        function closeNewCal() {
+            var formNewCal = document.getElementById('new-cal-popup');
+            formNewCal.style.display = 'none';
         }
     </script>
 </div>

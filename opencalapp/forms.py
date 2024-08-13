@@ -2,15 +2,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.forms import EmailInput, TextInput, PasswordInput
-from django.contrib.auth.models import User
 
-# forms.py
-from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from django.forms import EmailInput, TextInput, PasswordInput
-from django.contrib.auth.models import User
-
-from .models import CustomUser
+from .models import CustomUser, Calendar
 
 
 class LoginForm(AuthenticationForm):
@@ -53,3 +46,14 @@ class RegisterForm(UserCreationForm):
         super(RegisterForm, self).__init__(*args, **kwargs)
         self.fields['password1'].widget = PasswordInput(attrs={'class': 'form-control', 'placeholder': 'password', 'style': 'width: 100%'})
         self.fields['password2'].widget = PasswordInput(attrs={'class': 'form-control', 'placeholder': 'repeat password', 'style': 'width: 100%'})
+
+
+class NewCalendarForm(forms.ModelForm):
+    name = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'Enter Name',
+        'style': 'width: 100%'
+    }))
+    class Meta:
+        model = Calendar
+        fields = ['name']

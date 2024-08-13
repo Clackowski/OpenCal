@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
-from .forms import RegisterForm, LoginForm
+from .forms import RegisterForm, LoginForm, NewCalendarForm
 from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -12,12 +12,9 @@ from django.contrib.auth.decorators import login_required
 def login_user(request):
     if request.method == 'POST':
         form = LoginForm(data=request.POST)
-        print('here3')
         if form.is_valid():
-            print('here2')
             login(request, form.get_user())
             if form.get_user().username == 'christopherlackowski':
-                print('here')
                 return redirect(reverse('admin:index'))
             else:
                 return redirect('mycalendars')
@@ -42,12 +39,6 @@ def register(request):
 
 def show_footer(request):
     return render(request, 'footer.html')
-
-@login_required
-def show_mycalendars(request):
-    user = request.user
-    print(user.first_name)
-    return render(request, 'mycalendars.html', {'user': request.user})
 
 def about(request):
     return render(request, 'about.html')
@@ -80,5 +71,18 @@ def profile(request):
 @login_required
 def logout_user(request):
     logout(request)
-    #messages.success(request, ('You were logged out'))
     return redirect('login')
+
+@login_required
+def create_calendar(request):
+    if request.method == 'POST':
+        form = NewCalendarForm(request.POST)
+        if form.is_valid():
+            new_calendar = form.save(commit=False)
+            new_calendar.save()
+            request.user.calendars.add(new_calendar)
+            return redirect('mycalendars')
+    else:
+        form = NewCalendarForm()
+    return render(request, 'mycalendars.html', {'form': form})
+    
