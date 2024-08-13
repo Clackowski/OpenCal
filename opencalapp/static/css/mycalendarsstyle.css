@@ -166,12 +166,11 @@ body {
 }
 
 .calendar-info {
-    display: flex;
+    display: none;
     background-color: rgb(251, 251, 251);
     width: 30%;
     height: 70%;
     border-radius: 20px;
-    display: flex; /*Eventually make visibile when you click on a calendar*/
     justify-content: center;
     align-items: center;
     box-shadow: 0 0 10px 5px rgb(218, 218, 218);

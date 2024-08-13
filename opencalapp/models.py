@@ -1,10 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from datetime import datetime
+from django.utils import timezone
 
 # Create your models here.
 class CustomUser(AbstractUser):
     numCals = models.IntegerField(default = 5)
-    isFriend = models.BooleanField(default = True)
     calendars = models.ManyToManyField('Calendar', related_name='users', blank=True)
     
     def __str__(self):
@@ -13,6 +14,8 @@ class CustomUser(AbstractUser):
 class Calendar(models.Model):
     name = models.CharField(max_length=20, default='Calendar Name')
     owner = models.ForeignKey(CustomUser, related_name='owned_calendars', on_delete=models.CASCADE, default=1)
+    last_modified = models.DateTimeField(default=timezone.now)
+    contributors = models.ManyToManyField('CustomUser', related_name='active_calendars', blank=False)
     
     def __str__(self):
         return self.name

@@ -7,7 +7,7 @@ class EventInline(admin.TabularInline):
     extra = 1
     
 class CalendarAdmin(admin.ModelAdmin):
-    list_display = ['name', 'owner']
+    list_display = ['name', 'owner', 'last_modified']
     inlines = [EventInline]
     
 class CalendarInline(admin.TabularInline):
@@ -15,8 +15,12 @@ class CalendarInline(admin.TabularInline):
     extra = 1  # Number of empty forms to display
     
 class CustomUserAdmin(UserAdmin):
-    list_display = ('username', 'email', 'first_name', 'last_name', 'numCals', 'isFriend')
+    list_display = ('username', 'email', 'first_name', 'last_name', 'numCals')
     inlines = [CalendarInline]
+    
+class CustomUserInline(admin.TabularInline):
+    model = Calendar.contributors.through
+    extra = 1
     
 
 
