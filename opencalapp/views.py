@@ -4,6 +4,7 @@ from .forms import RegisterForm, LoginForm, NewCalendarForm
 from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from .models import Calendar
 
 from datetime import datetime
 
@@ -87,4 +88,9 @@ def create_calendar(request):
     else:
         form = NewCalendarForm()
     return render(request, 'mycalendars.html', {'form': form})
-    
+
+@login_required
+def delete_calendar(request, calendar_id):
+    calendar = Calendar.objects.get(pk=calendar_id)
+    calendar.delete()
+    return redirect('mycalendars')

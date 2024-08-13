@@ -23,7 +23,7 @@
                         </div>
                     </button>
                     {% for calendar in user.calendars.all %}
-                    <button class="grid-cell" data-calendar-name="{{ calendar.name }}" onclick="displayCalInfo(this)">
+                    <button class="grid-cell" data-calendar-id="{{ calendar.id }}" data-calendar-name="{{ calendar.name }}" data-last-modified="{{ calendar.last_modified }}" onclick="displayCalInfo(this)">
                         <div class="cal-name-container">
                             <div class="left-cal-name">
                                 <s-text>{{calendar.name}}</s-text>
@@ -64,7 +64,10 @@
                         <div class="info-details">
                             <div style="font-size: 14px;">
                                 <s-text>
-                                    <b>Last Modified: </b>10/30/2024
+                                    <b>Last Modified: </b>
+                                    <s-text id="last-modified-date">
+                                        
+                                    </s-text>
                                 </s-text>
                                 <br>
                                 <s-text>
@@ -77,11 +80,9 @@
                                         Open
                                     </s-text>
                                 </button>
-                                <button class="delete-button" style="margin-bottom: 10px;">
-                                    <s-text>
-                                        Delete
-                                    </s-text>
-                                </button>
+                                
+                                <a id="delete-button" href="" class="delete-button" style="margin-bottom: 10px;">Delete</a>
+                                
                             </div>
                         </div>
                     </div>
@@ -99,7 +100,7 @@
                 <form action="{% url 'mycalendars' %}" method="POST">
                     {% csrf_token %}
                     {{ form.name }}
-                    <input type="submit" value="Create" >
+                    <input type="submit" value="Create" name="create_calendar">
                 </form>
                 {% if form.errors %}
               <div class="errors">
@@ -142,10 +143,18 @@
             var calName = calendarButton.getAttribute('data-calendar-name');
             var calInfoDisplay = document.getElementById('calendar-info');
             var calInfoTitle = document.getElementById('cal-info-title');
+            var calInfoLastMod = document.getElementById('last-modified-date');
+            var lastModified = calendarButton.getAttribute('data-last-modified');
             calInfoDisplay.style.display = 'flex';
             calInfoTitle.textContent = "\u2002" + calName;
-            
+            calInfoLastMod.textContent = lastModified;
+
+            var calDeleteId = calendarButton.getAttribute('data-calendar-id');
+            var calDeleteButton = document.getElementById('delete-button');
+            calDeleteButton.href = "{% url 'delete_calendar' 'temp' %}".replace('temp', calDeleteId);
+
         }
+
     </script>
 </div>
 {% endblock %}
