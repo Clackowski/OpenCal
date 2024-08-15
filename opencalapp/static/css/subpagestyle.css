@@ -1,0 +1,33 @@
+/* Entire Page */
+.page-container {
+    height:100%;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Entire Visible Page Background*/
+.page-pane {
+    height:100%;
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(251, 251, 251);
+    background-image: linear-gradient(to bottom right, rgb(234, 231, 156), rgb(102, 160, 199));
+    flex-direction: column;
+}
+
+/* Background Bubble */
+.page-pane-bubble {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 92%;
+    height: 90%;
+    flex-direction: column;
+    background-color: rgb(240,240,240);
+    border-radius: 50px;
+    margin-top: 30px;
+}

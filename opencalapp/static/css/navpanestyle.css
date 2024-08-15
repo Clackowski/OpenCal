@@ -1,0 +1,105 @@
+.nav-pane {
+    height:100%;
+    width:300px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(240,240,240);
+    /*background-image: linear-gradient(to bottom right, rgb(234, 231, 156), rgb(102, 160, 199));*/
+    flex-direction: column;
+    padding-left: 30px;
+    border-right: 1px solid rgb(164, 140, 88);
+}
+
+.nav-options {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.nav-button {
+    border: none;
+    color: rgb(64, 67, 73);
+    font-family: Georgia, serif;
+    width: 200px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    text-decoration: none;
+}
+
+.nav-button-selected {
+    border: none;
+    background-color: rgb(102, 160, 199);
+    color: rgb(64, 67, 73);
+    font-family: Georgia, serif;
+    width: 200px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    text-decoration: none;
+}
+
+.all-profile {
+    display: flex;
+    align-items: center;
+    width: 85%;
+    height: 250px;
+    flex-direction: column;
+    margin-top: 220px;
+}
+
+.profile-pop-up {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(255,255,255);
+    width: 90%;
+    height: 50%;
+    box-shadow: 0 0 10px 5px rgb(218, 218, 218);
+    border-radius: 15px;
+    opacity: 0; /* Initially hidden */
+    visibility: hidden; /* Keeps space in layout */
+    transition: opacity 0.5s, visibility 0.5s; /* Smooth transition */
+}
+
+.profile-container {
+    height: 90px;
+    width: 100%;
+    border-radius: 100px;
+    padding: 0;
+    background-color: rgb(251, 251, 251);
+    border: 1px solid rgb(164, 140, 88);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.profile-img {
+    height: 85%;
+    aspect-ratio: 1.0;
+    border-radius: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+.profile-button {
+    width: 90%;
+    height: 40%;
+    background-color: white;
+    border: none;
+    border-radius: 15px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.nav-button.active {
+    background-color: rgb(102, 160, 199);
+}

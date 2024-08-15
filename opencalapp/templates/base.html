@@ -4,7 +4,10 @@
     <head>
         <title>{% block title %}Base Page{% endblock %}</title>
         <link rel="stylesheet" href="{% static 'css/mycalendarsstyle.css' %}">
+        <link rel="stylesheet" href="{% static 'css/navpanestyle.css' %}">
+        <link rel="stylesheet" href="{% static 'css/subpagestyle.css' %}">
         <link rel="stylesheet" href="{% static 'css/globalstyle.css' %}">
+        <link rel="stylesheet" href="{% static 'css/friendsstyle.css' %}">
         <script src="https://kit.fontawesome.com/f74ab1a7e1.js" crossorigin="anonymous"></script>
     </head>
 
@@ -15,28 +18,28 @@
                 <br><br>
                 
                 <div class="nav-options">
-                    <a class="nav-button" style="font-size: 20px" href="{% url 'account' %}">
+                    <a class="nav-button" style="font-size: 20px" href="{% url 'account' %}" id="account-link-id">
                         &ensp;
                         <i class="fas fa-house"></i>
                         &ensp;
                         My Account
                     </a>
                     <br><br><br>
-                    <a class="nav-button" style="font-size: 20px" href="{% url 'friends' %}">
+                    <a class="nav-button" style="font-size: 20px" href="{% url 'friends' %}" id="friends-link-id">
                         &ensp;
                         <i class="fas fa-user-group"></i>
                         &ensp;
                         Friends
                     </a>
                     <br><br><br>
-                    <a class="nav-button-selected" style="font-size: 20px" href="{% url 'mycalendars' %}">
+                    <a class="nav-button" style="font-size: 20px" href="{% url 'mycalendars' %}" id="calendars-link-id">
                         &ensp;
                         <i class="fas fa-calendar"></i>
                         &ensp;
                         Calendars
                     </a>
                     <br><br><br>
-                    <a class="nav-button" style="font-size: 20px" href="{% url 'settings' %}">
+                    <a class="nav-button" style="font-size: 20px" href="{% url 'settings' %}" id="settings-link-id">
                         &ensp;
                         <i class="fas fa-gear"></i>
                         &ensp;
@@ -82,6 +85,37 @@
                 var profilePopUp = document.getElementById('profilePopUp');
                 profilePopUp.classList.toggle('show');
             }
+
+            function setActiveLink(linkId) {
+                localStorage.setItem('activeLink', linkId);
+                updateActiveLink();
+            }
+
+            function updateActiveLink() {
+                var activeLinkId = localStorage.getItem('activeLink');
+                if (activeLinkId) {
+                    var activeLink = document.getElementById(activeLinkId);
+                    if (activeLink) {
+                        activeLink.classList.add('active');
+                    }
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+                updateActiveLink();
+
+                document.querySelectorAll('.nav-button').forEach(function(button) {
+                    button.addEventListener('click', function(event) {
+                        document.querySelectorAll('.nav-button').forEach(function(btn) {
+                            btn.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                        setActiveLink(this.id);
+                    })
+                })
+            })
+
+
         </script>
     </body>
 </html>

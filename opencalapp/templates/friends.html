@@ -1,11 +1,18 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Friends</title>
-    </head>
-    <body>
-        <h1>Friends</h1>
-        <p>This page has not been created yet</p>
-        <a href="{% url 'mycalendars' %}">Return to calendars</a>
-    </body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Friends Page{% endblock %}
+
+{% block content %}
+
+<div class="page-pane" >
+    <div class="page-pane-bubble">
+
+    </div>
+
+
+    {% include 'footer.html' %}
+
+</div>
+
+
+{% endblock %}
