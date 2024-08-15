@@ -82,7 +82,9 @@ def create_calendar(request):
         form = NewCalendarForm(request.POST)
         if form.is_valid():
             new_calendar = form.save(commit=False)
+            new_calendar.owner = request.user;
             new_calendar.save()
+            form.save_m2m()
             request.user.calendars.add(new_calendar)
             return redirect('mycalendars')
     else:

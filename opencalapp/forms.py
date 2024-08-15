@@ -54,6 +54,15 @@ class NewCalendarForm(forms.ModelForm):
         'placeholder': 'Enter Name',
         'style': 'width: 100%'
     }))
+    contributors = forms.ModelMultipleChoiceField(queryset=CustomUser.objects.all(), 
+                                                  widget=forms.CheckboxSelectMultiple,
+                                                  required=False)
+    
     class Meta:
         model = Calendar
-        fields = ['name']
+        fields = ('name', 'contributors',)
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Customize the widget to display full names
+        self.fields['contributors'].widget.choices = [(user.id, f"{user.first_name} {user.last_name}") for user in CustomUser.objects.all()]

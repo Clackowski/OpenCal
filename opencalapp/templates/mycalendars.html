@@ -23,7 +23,12 @@
                         </div>
                     </button>
                     {% for calendar in user.calendars.all %}
-                    <button class="grid-cell" data-calendar-id="{{ calendar.id }}" data-calendar-name="{{ calendar.name }}" data-last-modified="{{ calendar.last_modified }}" onclick="displayCalInfo(this)">
+                    <button class="grid-cell" 
+                    data-calendar-id="{{ calendar.id }}" 
+                    data-calendar-name="{{ calendar.name }}" 
+                    data-last-modified="{{ calendar.last_modified }}" 
+                    data-contributors="{% for contributor in calendar.contributors.all %}{{ contributor.first_name }} {{ contributor.last_name }}{% if not forloop.last %}, {% endif %}{% endfor %}" 
+                    onclick="displayCalInfo(this)">
                         <div class="cal-name-container">
                             <div class="left-cal-name">
                                 <s-text>{{calendar.name}}</s-text>
@@ -71,7 +76,11 @@
                                 </s-text>
                                 <br>
                                 <s-text>
-                                    <b>Contributors: </b>Alex Simpson, Jen Cook, Jim Buck
+                                    <b>Contributors: </b>
+                                    <s-text id="contributors">
+
+                                    </s-text>
+                                    
                                 </s-text>
                             </div>
                             <div class="info-footer">
@@ -100,6 +109,7 @@
                 <form action="{% url 'mycalendars' %}" method="POST">
                     {% csrf_token %}
                     {{ form.name }}
+                    {{ form.contributors }}
                     <input type="submit" value="Create" name="create_calendar">
                 </form>
                 {% if form.errors %}
@@ -148,6 +158,11 @@
             calInfoDisplay.style.display = 'flex';
             calInfoTitle.textContent = "\u2002" + calName;
             calInfoLastMod.textContent = lastModified;
+
+            var calInfoContribs = document.getElementById('contributors');
+            var contribs = calendarButton.getAttribute('data-contributors');
+            calInfoContribs.textContent = contribs;
+
 
             var calDeleteId = calendarButton.getAttribute('data-calendar-id');
             var calDeleteButton = document.getElementById('delete-button');
