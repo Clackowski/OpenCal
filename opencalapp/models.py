@@ -7,7 +7,6 @@ from django.utils import timezone
 class CustomUser(AbstractUser):
     numCals = models.IntegerField(default = 5)
     calendars = models.ManyToManyField('Calendar', related_name='users', blank=True)
-    friends = models.ManyToManyField('CustomUser', related_name='friend_set', blank=True)
     
     def __str__(self):
         return self.username
@@ -30,3 +29,33 @@ class Event(models.Model):
     
     def __str__(self):
         return self.title
+    
+class FriendList(models.Model):
+    user = models.OneToOneField('CustomUser', related_name='user', on_delete=models.CASCADE)
+    friends = models.ManyToManyField('CustomUser', related_name='friends', blank=True)
+    
+    def __str__(self):
+        return self.user.username
+    
+    def add_friend(self, userToAdd):
+        if userToAdd not in self.friends.all():
+            self.friends.add(userToAdd)
+            
+    def remove_friend(self, userToRemove):
+        if userToRemove in self.friends.all():
+            self.friends.remove(userToRemove)
+            
+    def unfriend(self, removee):
+        remover_friends_list = self
+        remover_friends_list.remove_friend(removee)
+        
+        friends_list = FriendList.objects.get(user=removee)
+        friends_list.remove_friend(self.user)
+        
+    def is_mutual_friend(self, friend):
+        if friend in self.friends.all():
+            return True
+        else:
+            return False
+        
+        
