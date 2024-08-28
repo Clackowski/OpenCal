@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.forms import EmailInput, TextInput, PasswordInput
 
-from .models import CustomUser, Calendar
+from .models import Account, Calendar
 
 
 class LoginForm(AuthenticationForm):
@@ -17,7 +17,7 @@ class RegisterForm(UserCreationForm):
     last_name = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'placeholder': "last name", 'style' : "width: 100%"}))
 
     class Meta:
-        model = CustomUser
+        model = Account
         fields = ('username', 'email', 'first_name', 'last_name', 'password1', 'password2')
         widgets = {
             'username': TextInput(attrs={
@@ -54,7 +54,7 @@ class NewCalendarForm(forms.ModelForm):
         'placeholder': 'Enter Name',
         'style': 'width: 100%'
     }))
-    contributors = forms.ModelMultipleChoiceField(queryset=CustomUser.objects.all(), 
+    contributors = forms.ModelMultipleChoiceField(queryset=Account.objects.all(), 
                                                   widget=forms.CheckboxSelectMultiple,
                                                   required=False)
     
@@ -65,4 +65,4 @@ class NewCalendarForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Customize the widget to display full names
-        self.fields['contributors'].widget.choices = [(user.id, f"{user.first_name} {user.last_name}") for user in CustomUser.objects.all()]
+        self.fields['contributors'].widget.choices = [(user.id, f"{user.first_name} {user.last_name}") for user in Account.objects.all()]

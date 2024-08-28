@@ -129,4 +129,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
 
-AUTH_USER_MODEL = 'opencalapp.CustomUser'
+AUTH_USER_MODEL = 'opencalapp.Account'
