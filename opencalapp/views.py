@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, logout
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import login, logout, get_user_model
 from .forms import RegisterForm, LoginForm, NewCalendarForm
 from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Calendar
+from .models import Calendar, FriendRequest, FriendList
 
 from datetime import datetime
 
@@ -61,7 +61,10 @@ def account(request):
 
 @login_required
 def friends(request):
-    return render(request, 'friends.html')
+    received_requests = FriendRequest.objects.filter(receiver=request.user, is_active=True)
+    friend_list = get_object_or_404(FriendList, user=request.user)
+    friends = friend_list.friends.all().order_by('last_name')
+    return render(request, 'friends.html', {'user': request.user, 'received_requests': received_requests, 'friends': friends})
 
 @login_required
 def settings(request):
@@ -96,3 +99,34 @@ def delete_calendar(request, calendar_id):
     calendar = Calendar.objects.get(pk=calendar_id)
     calendar.delete()
     return redirect('mycalendars')
+
+def send_friend_request(request, user_id):
+    receiver = get_object_or_404(get_user_model(), id=user_id)
+    friend_request, created = FriendRequest.objects.get_or_create(sender=request.user, receiver=receiver)
+    
+    if created:
+        # Friend request sent successfully
+        pass
+    else:
+        # Friend request already exists
+        pass
+
+    return redirect('friends', user_id=user_id)  # Adjust redirection as needed
+
+def accept_friend_request(request, request_id):
+    friend_request = get_object_or_404(FriendRequest, id=request_id, receiver=request.user, is_active=True)
+    
+    if friend_request:
+        friend_request.accept()
+        friend_request.save()
+    
+    return redirect('friends')
+
+def decline_friend_request(request, request_id):
+    friend_request = get_object_or_404(FriendRequest, id=request_id, receiver=request.user, is_active=True)
+    
+    if friend_request:
+        friend_request.decline()
+        friend_request.save()
+    
+    return redirect('friends')

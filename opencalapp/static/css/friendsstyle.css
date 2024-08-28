@@ -1,0 +1,99 @@
+/**/
+.header-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    width: 100%;
+
+}
+
+.all-social-panels {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 70%;
+    
+}
+
+.view-friend-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    height: 75%;
+    border-radius: 20px;
+    background-color: rgb(251, 251, 251);
+    box-shadow: 0 0 10px 5px rgb(218, 218, 218);
+}
+
+.modify-friends-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 65%;
+    height: 75%;
+    flex-direction: column;
+}
+
+.add-friends-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 45%;
+    background-color: rgb(251, 251, 251);
+    box-shadow: 0 0 10px 5px rgb(218, 218, 218);
+    border-radius: 20px;
+}
+
+.friend-request-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 45%;
+    background-color: rgb(251, 251, 251);
+    box-shadow: 0 0 10px 5px rgb(218, 218, 218);
+    border-radius: 20px;
+}
+
+.panel-bubble {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(240, 240, 240);
+    width: 90%;
+    height: 90%;
+    border-radius: 20px;
+}
+
+.view-friend-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10%;
+    width: 100%;
+}
+
+.view-friend-bubble {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(251, 251, 251);
+    width: 90%;
+    height: 88%;
+    border-radius: 20px;
+    padding-top: 5px;
+}
+
+.single-friend-view {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 90%;
+    height: 15%;
+}

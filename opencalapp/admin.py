@@ -34,7 +34,7 @@ class FriendListAdmin(admin.ModelAdmin):
         
 class FriendRequestAdmin(admin.ModelAdmin):
     list_filter = ['sender', 'receiver']
-    list_display = ['sender', 'receiver']
+    list_display = ['sender', 'receiver', 'is_active', 'timestamp']
     search_fields = ['sender__username', 'receiver__username']
     
     class Meta:
