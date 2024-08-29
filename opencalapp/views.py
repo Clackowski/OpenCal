@@ -4,7 +4,8 @@ from .forms import RegisterForm, LoginForm, NewCalendarForm
 from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Calendar, FriendRequest, FriendList
+from .models import Calendar, FriendRequest, FriendList, Account
+from django.db.models import Q
 
 from datetime import datetime
 
@@ -130,3 +131,17 @@ def decline_friend_request(request, request_id):
         friend_request.save()
     
     return redirect('friends')
+
+def search_users(request):
+    query = request.GET.get('query', '').lower()
+    if query:
+        users = Account.objects.filter(
+            Q(first_name__icontains=query) | 
+            Q(last_name__icontains=query) | 
+            Q(username__icontains=query) |
+            Q(first_name__icontains=query.split()[0], last_name__icontains=query.split()[-1])
+            )
+    else:
+        users = Account.objects.none()  # Return no users if no query
+    
+    return render(request, 'partials/user_cards.html', {'users': users})
