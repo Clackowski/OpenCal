@@ -1,8 +1,10 @@
 {% for user in users %}
     <button class="card"
-    data-profile-name="{{ user.get_full_name }}"
+    data-profile-id="{{ user.id }}"
+    data-profile-name="{{ user.full_name }}"
+    data-is-friend="{{ user.is_friend }}"
     onclick="showUserInfo(this)"
     >
-        <s-text style="font-size: 12px;">{{ user.get_full_name }}</s-text>
+        <s-text style="font-size: 12px;">{{ user.full_name }}</s-text>
     </button>
 {% endfor %}

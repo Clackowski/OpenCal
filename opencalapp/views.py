@@ -92,7 +92,7 @@ def create_calendar(request):
             request.user.calendars.add(new_calendar)
             return redirect('mycalendars')
     else:
-        form = NewCalendarForm()
+        form = NewCalendarForm(user=request.user)
     return render(request, 'mycalendars.html', {'form': form})
 
 @login_required
@@ -103,16 +103,21 @@ def delete_calendar(request, calendar_id):
 
 def send_friend_request(request, user_id):
     receiver = get_object_or_404(get_user_model(), id=user_id)
-    friend_request, created = FriendRequest.objects.get_or_create(sender=request.user, receiver=receiver)
-    
+    friend_request, created = FriendRequest.objects.get_or_create(sender=request.user, receiver=receiver, is_active=True)
+
     if created:
         # Friend request sent successfully
-        pass
+        return redirect('friends')
     else:
-        # Friend request already exists
-        pass
-
-    return redirect('friends', user_id=user_id)  # Adjust redirection as needed
+        # Friend request already exists (unfriend)
+        friendList = FriendList.objects.get(user=request.user)
+        friendList.friends.remove(receiver)
+        
+        receiverFriendList = FriendList.objects.get(user=receiver)
+        receiverFriendList.friends.remove(request.user)
+        
+        return redirect('friends')
+    
 
 def accept_friend_request(request, request_id):
     friend_request = get_object_or_404(FriendRequest, id=request_id, receiver=request.user, is_active=True)
@@ -141,7 +146,24 @@ def search_users(request):
             Q(username__icontains=query) |
             Q(first_name__icontains=query.split()[0], last_name__icontains=query.split()[-1])
             )
-    else:
-        users = Account.objects.none()  # Return no users if no query
+        
+        # Get the current user's friends
+        current_user = request.user
+        friend_list = get_object_or_404(FriendList, user=current_user)
+        friends = friend_list.friends.all()
+        
+        # Prepare user data with friendship status
+        user_data = []
+        for user in users:
+            is_friend = user in friends
+            user_data.append({
+                'id': user.id,
+                'full_name': user.get_full_name(),
+                'is_friend': is_friend
+            })
     
-    return render(request, 'partials/user_cards.html', {'users': users})
+    else:
+        user_data = Account.objects.none()  # Return no users if no query
+    
+    return render(request, 'partials/user_cards.html', {'users': user_data})
+

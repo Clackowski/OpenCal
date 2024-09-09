@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.forms import EmailInput, TextInput, PasswordInput
 
-from .models import Account, Calendar
+from .models import Account, Calendar, FriendList
 
 
 class LoginForm(AuthenticationForm):
@@ -63,6 +63,9 @@ class NewCalendarForm(forms.ModelForm):
         fields = ('name', 'contributors',)
         
     def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
+        
         # Customize the widget to display full names
-        self.fields['contributors'].widget.choices = [(user.id, f"{user.first_name} {user.last_name}") for user in Account.objects.all()]
+        friends = FriendList.objects.get(user=user).friends.all()
+        self.fields['contributors'].widget.choices = [(friend.id, f"{friend.first_name} {friend.last_name}") for friend in friends]

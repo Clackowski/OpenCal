@@ -64,7 +64,9 @@
                                 <div class="username" id="username-text">
                                     <!--Name will be dynamically displayed here--> 
                                 </div>
-                                <input type="submit" value="Send Request" class="change-friendship-button">
+                                <a type="submit" href="" class="change-friendship-button" id="friend-request-button">
+
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -95,7 +97,6 @@
             .then(data => {
                 const userCards = document.getElementById('user-cards');
                 userCards.innerHTML = data;  // Insert the rendered HTML
-                console.log(userCards);
             })
             .catch(error => {
                 console.error('Error fetching users:', error);
@@ -103,14 +104,34 @@
         }
 
         function showUserInfo(cardButton) {
+            // Show entire profile
             var userProfile = document.getElementById('user-profile');
             userProfile.style.display = 'flex';
 
-
+            // Display Name
             var fullName = cardButton.getAttribute('data-profile-name');
             var nameDisplay = document.getElementById('username-text');
-
             nameDisplay.textContent = fullName;
+
+            // Send Friend Request
+            var requestButton = document.getElementById('friend-request-button');
+            var requestId = cardButton.getAttribute('data-profile-id');
+            requestButton.href = "{% url 'send_friend_request' 'user_id' %}".replace('user_id', requestId);
+            
+            // Modify button depending on friendship status
+            var isFriend = cardButton.getAttribute('data-is-friend') === "True";
+            
+            if (isFriend) {
+                // Already friend -> button unfriends
+                requestButton.classList.add("unfriend-button");
+                requestButton.classList.remove("send-friend-request-button");
+                requestButton.textContent = "Unfriend";
+            } else {
+                // Not friend -> button sends request
+                requestButton.classList.add("send-friend-request-button");
+                requestButton.classList.remove("unfriend-button");
+                requestButton.textContent = "Send Request";
+            }
         }
 
         function closeProfile() {

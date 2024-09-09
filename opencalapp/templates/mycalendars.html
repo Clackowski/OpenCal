@@ -159,11 +159,12 @@
             calInfoTitle.textContent = "\u2002" + calName;
             calInfoLastMod.textContent = lastModified;
 
+            // Displays contributors
             var calInfoContribs = document.getElementById('contributors');
             var contribs = calendarButton.getAttribute('data-contributors');
             calInfoContribs.textContent = contribs;
 
-
+            // Handle Calendar Deletion
             var calDeleteId = calendarButton.getAttribute('data-calendar-id');
             var calDeleteButton = document.getElementById('delete-button');
             calDeleteButton.href = "{% url 'delete_calendar' 'temp' %}".replace('temp', calDeleteId);

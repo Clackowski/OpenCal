@@ -196,12 +196,31 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: green;
     color: rgb(64, 67, 73);
     font-family: Georgia, serif;
-    font-size: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 20px;
 }
 
-.change-friendship-button:hover {
-    background-color: greenyellow;
+.send-friend-request-button {
+    background-color: rgb(149, 255, 159);
+}
+
+.unfriend-button {
+    background-color: rgb(250, 157, 157);
+}
+
+
+
+.send-friend-request-button:hover {
+    background-color: rgb(133, 223, 142);
+}
+
+.unfriend-button:hover {
+    background-color: rgb(218, 137, 137);
 }
