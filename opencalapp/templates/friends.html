@@ -4,6 +4,8 @@
 
 {% block content %}
 
+{% load static %}
+
 <div class="page-pane" >
     <div class="page-pane-bubble">
         <div class="header-title">
@@ -47,8 +49,22 @@
                                     <!--Cards will be dynamically added here--> 
                                 </div>
                             </div>
-                            <div class="account-info-bubble">
+                            <div class="account-info-bubble" id="user-profile">
+                                <div class="top-profile">
+                                    <div class="profile-sides">
 
+                                    </div>
+                                    <img src="{% static 'images/IMG_7987.png' %}" class="profile-image">
+                                    <div class="profile-sides">
+                                        <button class="cal-info-close-friends" onclick="closeProfile()">
+                                            <i class="fa-solid fa-xmark" style="font-size: 15px;"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="username" id="username-text">
+                                    <!--Name will be dynamically displayed here--> 
+                                </div>
+                                <input type="submit" value="Send Request" class="change-friendship-button">
                             </div>
                         </div>
                     </div>
@@ -86,6 +102,21 @@
             });
         }
 
+        function showUserInfo(cardButton) {
+            var userProfile = document.getElementById('user-profile');
+            userProfile.style.display = 'flex';
+
+
+            var fullName = cardButton.getAttribute('data-profile-name');
+            var nameDisplay = document.getElementById('username-text');
+
+            nameDisplay.textContent = fullName;
+        }
+
+        function closeProfile() {
+            var userProfile = document.getElementById('user-profile');
+            userProfile.style.display = 'none';
+        }
 
     </script>
 

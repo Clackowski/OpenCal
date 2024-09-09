@@ -110,17 +110,21 @@
 .find-friends-section {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     height: 75%;
     width: 90%;
 }
 
 .account-info-bubble {
-    display: flex;
+    display: none;
     width: 40%;
     height: 100%;
     background-color: rgb(251, 251, 251);
     border-radius: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
 }
 
 .search-area {
@@ -156,4 +160,48 @@ input {
     height: 25px;
     border-radius: 20px;
     padding: .1rem;
+}
+
+.top-profile {
+    display: flex;
+    justify-content: space-around;
+}
+
+.profile-sides {
+    display: flex;
+    width: 25%;
+    justify-content: center;
+}
+
+.cal-info-close-friends {
+    display: flex;
+    border: none; 
+    height: 20px; 
+    aspect-ratio: 1.0;
+    border-radius: 200px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center
+}
+
+.profile-image {
+    width: 50%;
+    aspect-ratio: 1.0;
+    background-color: green;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.change-friendship-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: green;
+    color: rgb(64, 67, 73);
+    font-family: Georgia, serif;
+    font-size: 10px;
+}
+
+.change-friendship-button:hover {
+    background-color: greenyellow;
 }
