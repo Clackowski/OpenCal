@@ -15,7 +15,7 @@ class CalendarInline(admin.TabularInline):
     extra = 1  # Number of empty forms to display
     
 class AccountAdmin(UserAdmin):
-    list_display = ('username', 'email', 'first_name', 'last_name', 'numCals')
+    list_display = ('username', 'email', 'first_name', 'last_name')
     list_filter = ['username']
     inlines = [CalendarInline]
     

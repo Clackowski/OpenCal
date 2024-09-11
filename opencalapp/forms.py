@@ -67,5 +67,8 @@ class NewCalendarForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         
         # Customize the widget to display full names
-        friends = FriendList.objects.get(user=user).friends.all()
-        self.fields['contributors'].widget.choices = [(friend.id, f"{friend.first_name} {friend.last_name}") for friend in friends]
+        try:
+            friends = FriendList.objects.get(user=user).friends.all()
+            self.fields['contributors'].widget.choices = [(friend.id, f"{friend.first_name} {friend.last_name}") for friend in friends]
+        except FriendList.DoesNotExist:
+            pass

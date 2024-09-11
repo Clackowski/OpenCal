@@ -7,7 +7,6 @@ from django.dispatch import receiver
 
 # Create your models here.
 class Account(AbstractUser):
-    numCals = models.IntegerField(default = 5)
     calendars = models.ManyToManyField('Calendar', related_name='users', blank=True)
     
     def __str__(self):
