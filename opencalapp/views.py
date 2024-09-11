@@ -101,13 +101,14 @@ def delete_calendar(request, calendar_id):
     calendar.delete()
     return redirect('mycalendars')
 
-def send_friend_request(request, user_id):
+@login_required
+def send_friend_request(request, user_id, is_request):
+    is_request = (is_request == "true")
     receiver = get_object_or_404(get_user_model(), id=user_id)
-    friend_request, created = FriendRequest.objects.get_or_create(sender=request.user, receiver=receiver, is_active=True)
-
-    if created:
+    
+    if is_request:
         # Friend request sent successfully
-        return redirect('friends')
+        friend_request, created = FriendRequest.objects.get_or_create(sender=request.user, receiver=receiver, is_active=True)
     else:
         # Friend request already exists (unfriend)
         friendList = FriendList.objects.get(user=request.user)
@@ -115,8 +116,8 @@ def send_friend_request(request, user_id):
         
         receiverFriendList = FriendList.objects.get(user=receiver)
         receiverFriendList.friends.remove(request.user)
-        
-        return redirect('friends')
+    
+    return redirect('friends')
     
 
 def accept_friend_request(request, request_id):

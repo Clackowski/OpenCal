@@ -113,14 +113,16 @@
             var nameDisplay = document.getElementById('username-text');
             nameDisplay.textContent = fullName;
 
+            // Check if already a friend
+            var isFriend = cardButton.getAttribute('data-is-friend') === "True";
+
             // Send Friend Request
             var requestButton = document.getElementById('friend-request-button');
             var requestId = cardButton.getAttribute('data-profile-id');
-            requestButton.href = "{% url 'send_friend_request' 'user_id' %}".replace('user_id', requestId);
+            var isRequest = !isFriend;
+            requestButton.href = "{% url 'send_friend_request' 'user_id' 'is_request' %}".replace('user_id', requestId).replace('is_request', isRequest);
             
             // Modify button depending on friendship status
-            var isFriend = cardButton.getAttribute('data-is-friend') === "True";
-            
             if (isFriend) {
                 // Already friend -> button unfriends
                 requestButton.classList.add("unfriend-button");
