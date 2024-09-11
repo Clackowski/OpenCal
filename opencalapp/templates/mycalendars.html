@@ -26,6 +26,7 @@
                     <button class="grid-cell" 
                     data-calendar-id="{{ calendar.id }}" 
                     data-calendar-name="{{ calendar.name }}" 
+                    data-owner="{{ calendar.owner.first_name }} {{ calendar.owner.last_name }}" 
                     data-last-modified="{{ calendar.last_modified }}" 
                     data-contributors="{% for contributor in calendar.contributors.all %}{{ contributor.first_name }} {{ contributor.last_name }}{% if not forloop.last %}, {% endif %}{% endfor %}" 
                     onclick="displayCalInfo(this)">
@@ -68,6 +69,13 @@
                         </button>
                         <div class="info-details">
                             <div style="font-size: 14px;">
+                                <s-text>
+                                    <b>Owner: </b>
+                                    <s-text id="owner">
+                                        
+                                    </s-text>
+                                </s-text>
+                                <br>
                                 <s-text>
                                     <b>Last Modified: </b>
                                     <s-text id="last-modified-date">
@@ -158,6 +166,11 @@
             calInfoDisplay.style.display = 'flex';
             calInfoTitle.textContent = "\u2002" + calName;
             calInfoLastMod.textContent = lastModified;
+
+            //Display owners name
+            var calInfoOwner = document.getElementById('owner');
+            var owner = calendarButton.getAttribute('data-owner');
+            calInfoOwner.textContent = owner;
 
             // Displays contributors
             var calInfoContribs = document.getElementById('contributors');
