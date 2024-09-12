@@ -55,7 +55,7 @@
                                 Profile
                             </b-text>
                         </a>
-                        <a class="profile-button" style="text-align: left;" href="{% url 'logout' %}">
+                        <a class="profile-button" style="text-align: left;" id="logout-button" href="{% url 'logout' %}">
                             <b-text style="font-size: 15px;">
                                 &nbsp;
                                 <i class="fa fa-sign-out" aria-hidden="true"></i>
@@ -102,7 +102,18 @@
             }
 
             document.addEventListener('DOMContentLoaded', function() {
-                updateActiveLink();
+                var isLoggedIn = "{{ user.is_authenticated|yesno:'true,false' }}";
+                console.log(localStorage.getItem('activeLink'))
+
+
+                if (isLoggedIn && !localStorage.getItem('activeLink')) {
+                    // If logged in and no active link is set, default to 'account-link-id'
+                    setActiveLink('account-link-id');
+                } else {
+                    // Otherwise, update the active link based on localStorage
+                    updateActiveLink();
+                }
+
 
                 document.querySelectorAll('.nav-button').forEach(function(button) {
                     button.addEventListener('click', function(event) {
@@ -114,6 +125,14 @@
                     })
                 })
             })
+
+            // Clear active link upon logging out
+            document.getElementById('logout-button').addEventListener('click', function(event) {
+                if (event.target.href && event.target.href.includes("{% url 'logout' %}")) {
+                    localStorage.removeItem('activeLink');
+                    window.location.href = event.target.href;
+                }
+            });
 
 
         </script>

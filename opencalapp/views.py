@@ -21,7 +21,7 @@ def login_user(request):
             if form.get_user().username == 'christopherlackowski':
                 return redirect(reverse('admin:index'))
             else:
-                return redirect('mycalendars')
+                return redirect('account')
         else:
             return render(request, 'login.html', {'form': form})
     else:
