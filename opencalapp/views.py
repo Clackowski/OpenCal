@@ -102,6 +102,10 @@ def create_calendar(request):
     return render(request, 'mycalendars.html', {'form': form})
 
 @login_required
+def open_calendar(request, calendar_id):
+    return render(request, 'opencalendar.html')
+
+@login_required
 def delete_calendar(request, calendar_id):
     calendar = Calendar.objects.get(pk=calendar_id)
     calendar.delete()

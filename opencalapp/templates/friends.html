@@ -73,6 +73,12 @@
                 </div>
                 <div class="friend-request-panel">
                     <div class="panel-bubble">
+                        <div class="find-friends-header">
+                            <s-text style="font-size: 20px;">
+                                <i class="fas fa-user-group"></i>
+                            </s-text>
+                            <s-text style="font-size: 20px;">&nbsp&nbspRequests</s-text>
+                        </div>
                         {% for request in received_requests %}
                             <p>{{ request.sender.username }} wants to be friends!</p>
                             <a href="{% url 'accept_friend_request' request.id %}">Accept</a>

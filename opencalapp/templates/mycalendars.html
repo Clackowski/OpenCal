@@ -92,11 +92,8 @@
                                 </s-text>
                             </div>
                             <div class="info-footer">
-                                <button class="open-button" style="margin-bottom: 10px;">
-                                    <s-text>
-                                        Open
-                                    </s-text>
-                                </button>
+                                <a id="open-button" href="" class="open-button" style="margin-bottom: 10px;">Open</a>
+                                
                                 
                                 <a id="delete-button" href="" class="delete-button" style="margin-bottom: 10px;">Delete</a>
                                 
@@ -178,10 +175,13 @@
             calInfoContribs.textContent = contribs;
 
             // Handle Calendar Deletion
-            var calDeleteId = calendarButton.getAttribute('data-calendar-id');
+            var calId = calendarButton.getAttribute('data-calendar-id');
             var calDeleteButton = document.getElementById('delete-button');
-            calDeleteButton.href = "{% url 'delete_calendar' 'temp' %}".replace('temp', calDeleteId);
+            calDeleteButton.href = "{% url 'delete_calendar' 'temp' %}".replace('temp', calId);
 
+            // Handle Opening a Calendar
+            var calOpenButton = document.getElementById('open-button');
+            calOpenButton.href = "{% url 'open_calendar' 'temp' %}".replace('temp', calId);
         }
 
     </script>

@@ -206,6 +206,8 @@ body {
     padding-right: 10px;
     font-size: 16px;
     background-color: rgb(149, 255, 159);
+    text-decoration: none;
+    color: rgb(64, 67, 73);
 }
 
 .delete-button {
