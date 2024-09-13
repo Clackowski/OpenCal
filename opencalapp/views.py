@@ -103,7 +103,10 @@ def create_calendar(request):
 
 @login_required
 def open_calendar(request, calendar_id):
-    return render(request, 'opencalendar.html')
+    calendar = Calendar.objects.get(pk=calendar_id)
+    weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    
+    return render(request, 'opencalendar.html', {'calendar': calendar, 'weekdays': weekdays})
 
 @login_required
 def delete_calendar(request, calendar_id):

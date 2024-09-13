@@ -4,9 +4,29 @@
 
 {% block content %}
 <div class="page-pane">
-    <div class="page-pane-bubble">
-        <div class="header-title">
-            <b-text style="font-size: 40px;">Open Calendar</b-text>
+    <div class="page-pane-bubble" style="justify-content: center;">
+        <div class="entire-calendar">
+            <div class="open-cal-header-title">
+                <b-text style="font-size: 40px;">{{calendar.name}}</b-text>
+            </div>
+            <div class="calendar">
+                <div class="calendar-header">
+
+                </div>
+                <div class="weekdays">
+                    {% for weekday in weekdays %}
+                        <div class="weekday">
+                            <s-text>
+                                {{weekday}}
+                            </s-text>
+                        </div>
+                    {% endfor %}
+                    
+                </div>
+                <div class="calendar-days">
+                    
+                </div>
+            </div>
         </div>
 
     </div>

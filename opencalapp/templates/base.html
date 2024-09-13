@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="{% static 'css/subpagestyle.css' %}">
         <link rel="stylesheet" href="{% static 'css/globalstyle.css' %}">
         <link rel="stylesheet" href="{% static 'css/friendsstyle.css' %}">
+        <link rel="stylesheet" href="{% static 'css/opencalendarstyle.css' %}">
         <script src="https://kit.fontawesome.com/f74ab1a7e1.js" crossorigin="anonymous"></script>
     </head>
 
@@ -103,8 +104,6 @@
 
             document.addEventListener('DOMContentLoaded', function() {
                 var isLoggedIn = "{{ user.is_authenticated|yesno:'true,false' }}";
-                console.log(localStorage.getItem('activeLink'))
-
 
                 if (isLoggedIn && !localStorage.getItem('activeLink')) {
                     // If logged in and no active link is set, default to 'account-link-id'
